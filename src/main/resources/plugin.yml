@@ -1,0 +1,9 @@
+name: DeadRun
+version: '${project.version}'
+main: me.towercraft.rolles.minigame.deadrun.DeadRun
+prefix: DeadRun
+authors: [ Rolles ]
+description: Run to survive
+website: https://towercraft.me/
+commands:
+  dr: {}
