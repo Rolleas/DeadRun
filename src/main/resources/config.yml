@@ -1,0 +1,3 @@
+deadrun:
+  max-players: 2
+  massage-join: "Игрок <player> присоединился"

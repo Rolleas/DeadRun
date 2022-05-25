@@ -7,19 +7,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.io.File;
 
 public class YMLConfig {
-    private final DeadRun instance = DeadRun.getInstance();
+    private DeadRun instance;
 
-    public YMLConfig() {
+    public YMLConfig(DeadRun instance) {
+        this.instance = instance;
         if (!instance.getDataFolder().exists()) {
             instance.getDataFolder().mkdirs();
-            instance.saveConfig();
-            this.setDefaultConfig();
+            instance.saveDefaultConfig();
         }
-    }
-
-    public void setDefaultConfig() {
-       FileConfiguration config = instance.getConfig();
-       config.set("name", "DeadRun");
-       instance.saveConfig();
     }
 }
