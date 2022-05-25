@@ -18,12 +18,10 @@ public class TimerScheduler extends BukkitRunnable {
     @Override
     public void run() {
         try {
-            Bukkit.broadcastMessage(ChatColor.RED + "Timer Started");
             for (int counter = 10; counter > 0; counter--) {
                 Bukkit.broadcastMessage(ChatColor.GREEN + "До игры осталось " + counter + " секунд");
                 Thread.sleep(1000);
                 if(!timer.getTimer()) {
-                    Bukkit.broadcastMessage(ChatColor.RED + "Timer Stopped");
                     return;
                 }
             }

@@ -1,3 +1,6 @@
 deadrun:
   max-players: 2
-  massage-join: "Игрок <player> присоединился"
+  lobby-spawn :
+  material-block-remove: DIAMOND_BLOCK
+massages:
+  join-player: "Игрок %1s присоединился к игре"
