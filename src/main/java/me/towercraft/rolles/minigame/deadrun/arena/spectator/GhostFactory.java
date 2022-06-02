@@ -7,6 +7,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
@@ -34,7 +35,6 @@ public class GhostFactory {
 
     private void createGetTeam() {
         Scoreboard board = Bukkit.getServer().getScoreboardManager().getMainScoreboard();
-
         ghostTeam = board.getTeam(GHOST_TEAM_NAME);
 
         if (ghostTeam == null) {

@@ -30,4 +30,9 @@ public class StateArena {
         return keys.stream().filter(key -> players.get(key).equals(false)).collect(Collectors.toList());
     }
 
+    public List<Player> getSpectorList() {
+        Set<Player> keys = players.keySet();
+        return keys.stream().filter(key -> players.get(key).equals(true)).collect(Collectors.toList());
+    }
+
 }

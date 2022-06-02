@@ -51,12 +51,15 @@ public class CycleArena implements Listener {
     @EventHandler
     public void onLoose(PlayerMoveEvent event) {
         Location location = event.getPlayer().getLocation();
-        if (location.getY() < config.getLOOSE_ZONE()) {
+        if (location.getY() < config.getLOOSE_ZONE() && !plugin.getGhost().isGhost(event.getPlayer())) {
             arena.setCounter(arena.getCounter() - 1);
             arena.setSpectator(event.getPlayer(), true);
             //hidePlayer(event.getPlayer());
             Sender.broadcastMessage(config.getPLAYER_LOOSE_MESSAGE().replace("<name>", event.getPlayer().getName()));
             Spectator.set(plugin, arena, event.getPlayer(), config.getARENA_SPAWN());
+        }
+        if (location.getY() < config.getLOOSE_ZONE() && plugin.getGhost().isGhost(event.getPlayer())) {
+            Teleport.go(event.getPlayer(), config.getARENA_SPAWN());
         }
         if (arena.getCounter() == 1 && arena.getState() == GameState.PLAYING) {
             Player player = arena.getNotSpectatorList().get(0);
