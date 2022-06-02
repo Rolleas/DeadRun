@@ -8,4 +8,6 @@ messages:
   leave-player: "&7Игрок &a<name> &7покинул игру &7(&a<current>&7/&a<max>&7)"
   start: "&7Игра начнется через &a<time> &7секунд."
   loose: "&7Игрок &a<name> &7упал."
+  win: "&7Игрок &a<name> &7победил!"
+  win-for-player: "Вы победили!"
 

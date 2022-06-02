@@ -1,5 +1,6 @@
 package me.towercraft.rolles.minigame.deadrun.config;
 
+import co.aikar.timings.TimingHistory;
 import lombok.Data;
 import me.towercraft.rolles.minigame.deadrun.DeadRun;
 import org.bukkit.Material;
@@ -21,6 +22,8 @@ public class YMLConfig {
     private String PLAYER_LEAVE_MESSAGE;
     private int LOOSE_ZONE;
     private String PLAYER_LOOSE_MESSAGE;
+    private String PLAYER_WIN_MESSAGE;
+    private String PLAYER_WIN_TITLE;
     private List<Material> materials = new ArrayList<>();
     private FileConfiguration config;
 
@@ -67,5 +70,7 @@ public class YMLConfig {
         this.transformationMaterial();
         this.LOOSE_ZONE = config.getInt("arena.loose-zone");
         this.PLAYER_LOOSE_MESSAGE = config.getString("messages.loose");
+        this.PLAYER_WIN_MESSAGE = config.getString("messages.win");
+        this.PLAYER_WIN_TITLE = config.getString("messages.win-for-player");
     }
 }

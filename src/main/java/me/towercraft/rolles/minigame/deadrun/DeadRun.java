@@ -1,6 +1,7 @@
 package me.towercraft.rolles.minigame.deadrun;
 
 import me.towercraft.rolles.minigame.deadrun.arena.lobby.Lobby;
+import me.towercraft.rolles.minigame.deadrun.arena.spectator.GhostFactory;
 import me.towercraft.rolles.minigame.deadrun.command.DeadRunCommand;
 import me.towercraft.rolles.minigame.deadrun.listener.LobbyListener;
 import me.towercraft.rolles.minigame.deadrun.arena.StateArena;
@@ -18,6 +19,7 @@ public final class DeadRun extends JavaPlugin {
     public static StateArena arena;
     public static YMLConfig config;
     public static Lobby lobby;
+    public GhostFactory ghostFactory;
 
     @Override
     public void onEnable() {
@@ -25,6 +27,7 @@ public final class DeadRun extends JavaPlugin {
         config = new YMLConfig(this);
         arena = new StateArena();
         lobby = new Lobby(arena, config, this);
+        this.ghostFactory = new GhostFactory(this);
 
         new DeadRunCommand(this, config);
         Bukkit.getPluginManager().registerEvents(new Game(), this);
@@ -36,5 +39,9 @@ public final class DeadRun extends JavaPlugin {
     @Override
     public void onDisable() {
         saveConfig();
+    }
+
+    public GhostFactory getGhost() {
+        return this.ghostFactory;
     }
 }

@@ -7,9 +7,12 @@ import me.towercraft.rolles.minigame.deadrun.arena.StateArena;
 import me.towercraft.rolles.minigame.deadrun.config.YMLConfig;
 import me.towercraft.rolles.minigame.deadrun.enumerate.GameState;
 import me.towercraft.rolles.minigame.deadrun.notification.Sender;
+import me.towercraft.rolles.minigame.deadrun.util.timer.Timer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffectType;
 
+import java.sql.Time;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -18,28 +21,11 @@ public class Lobby {
     private final YMLConfig config;
     private final DeadRun plugin;
 
-    public void timer() {
-        Bukkit.getScheduler().scheduleAsyncDelayedTask(plugin, () -> {
-            for (int counter = 10; counter > 0; counter--) {
-                Sender.titleForListPlayers(String.valueOf(counter));
-                if (counter == 10) {
-                    Sender.broadcastMessage(config.getSTART_MESSAGE().replace("<time>", String.valueOf(counter)));
-                }
-                if (counter <= 5) {
-                    Sender.broadcastMessage(config.getSTART_MESSAGE().replace("<time>", String.valueOf(counter)));
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     public void fill(Player player) {
         if (arena.getCounter() < config.getMAX_PLAYERS() && arena.getState() == GameState.WAITING) {
             arena.setCounter(arena.getCounter() + 1);
+            arena.addPlayer(player, false);
+            player.removePotionEffect(PotionEffectType.INVISIBILITY);
             Sender.broadcastMessage(config.getPLAYER_JOIN_MESSAGE()
                     .replace("<current>", String.valueOf(arena.getCounter()))
                     .replace("<max>", String.valueOf(config.getMAX_PLAYERS()))
@@ -49,9 +35,10 @@ public class Lobby {
         }
         if (Objects.equals(arena.getCounter(), config.getMAX_PLAYERS())) {
             arena.setState(GameState.STARTING);
-            timer();
+            Timer.start(plugin, config);
             Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 new CycleArena(arena, config, plugin).start();
+                arena.setState(GameState.PLAYING);
             }, 200);
         }
 
