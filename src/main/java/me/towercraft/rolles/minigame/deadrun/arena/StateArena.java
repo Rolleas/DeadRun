@@ -10,13 +10,5 @@ import java.util.HashMap;
 @Data
 public class StateArena {
     private GameState state = GameState.WAITING;
-    private HashMap<Player, Location> players = new HashMap<>();
-
-    public void addPlayer(Player player) {
-        players.put(player, player.getLocation());
-    }
-
-    public int getNumbersOfPlayers() {
-        return players.size();
-    }
+    private Integer counter = 0;
 }

@@ -19,7 +19,8 @@ public class YMLConfig {
     private String ARENA_SPAWN;
     private String START_MESSAGE;
     private String PLAYER_LEAVE_MESSAGE;
-    private int DEAD_ZONE;
+    private int LOOSE_ZONE;
+    private String PLAYER_LOOSE_MESSAGE;
     private List<Material> materials = new ArrayList<>();
     private FileConfiguration config;
 
@@ -64,6 +65,7 @@ public class YMLConfig {
         this.START_MESSAGE = config.getString("messages.start");
         this.PLAYER_LEAVE_MESSAGE = config.getString("messages.leave-player");
         this.transformationMaterial();
-        this.DEAD_ZONE = config.getInt("arena.dead-zone");
+        this.LOOSE_ZONE = config.getInt("arena.loose-zone");
+        this.PLAYER_LOOSE_MESSAGE = config.getString("messages.loose");
     }
 }

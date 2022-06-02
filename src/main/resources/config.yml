@@ -1,10 +1,11 @@
 arena:
   max-players: 10
-  list-remove-block: SAND, GRAVEL
+  list-remove-block: SAND,GRAVEL
   complete: false
-  dead-zone: 20
+  loose-zone: 20
 messages:
-  join-player: "&7Игрок &a<name> &7присоединился к игре &7(&a<n>&7/&a<s>&7)"
-  leave-player: "&7Игрок &a<name> &7покинул игру &7(&a<n>&7/&a<s>&7)"
+  join-player: "&7Игрок &a<name> &7присоединился к игре &7(&a<current>&7/&a<max>&7)"
+  leave-player: "&7Игрок &a<name> &7покинул игру &7(&a<current>&7/&a<max>&7)"
   start: "&7Игра начнется через &a<time> &7секунд."
+  loose: "&7Игрок &a<name> &7упал."
 
