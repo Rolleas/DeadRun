@@ -33,7 +33,6 @@ public class DeadRunCommand extends CommandAbstract{
 
         if (Objects.equals(args[0], "create")) {
             createArena = new CreateArena();
-            createArena.setArenaName(true);
             Bukkit.broadcastMessage(ChatColor.GREEN + "Арена " + ChatColor.GOLD + args[1] + " создана");
             return;
         }

@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 @Data
 public class StateArena {
+
     private GameState state = GameState.WAITING;
-    private Integer counter = 0;
     private HashMap<Player, Boolean> players = new HashMap<>();
 
     public void addPlayer(Player player, Boolean value) {
@@ -34,5 +34,4 @@ public class StateArena {
         Set<Player> keys = players.keySet();
         return keys.stream().filter(key -> players.get(key).equals(true)).collect(Collectors.toList());
     }
-
 }

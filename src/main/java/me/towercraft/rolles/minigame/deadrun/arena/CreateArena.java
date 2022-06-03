@@ -4,6 +4,5 @@ import lombok.Data;
 
 @Data
 public class CreateArena {
-    private Boolean arenaName = false;
     private Boolean arenaSpawn = false;
 }

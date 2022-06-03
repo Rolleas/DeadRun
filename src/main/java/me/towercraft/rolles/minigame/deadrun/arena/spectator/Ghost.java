@@ -7,15 +7,13 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
-public class GhostFactory {
+public class Ghost {
     private static final String GHOST_TEAM_NAME = "Ghosts";
     private static final long UPDATE_DELAY = 20L;
 
@@ -28,7 +26,7 @@ public class GhostFactory {
 
     private Set<String> ghosts = new HashSet<>();
 
-    public GhostFactory(Plugin plugin) {
+    public Ghost(Plugin plugin) {
         createTask(plugin);
         createGetTeam();
     }

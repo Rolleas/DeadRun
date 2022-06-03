@@ -18,8 +18,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import java.util.List;
-
 @AllArgsConstructor
 public class CycleArena implements Listener {
 
@@ -31,7 +29,7 @@ public class CycleArena implements Listener {
         Teleport.TeleportAllPlayers(config.getARENA_SPAWN());
         Bukkit.getScheduler().scheduleAsyncDelayedTask(plugin, () -> {
             Bukkit.getPluginManager().registerEvents(this, plugin);
-        }, 20);
+        }, 100);
     }
 
     @EventHandler
@@ -50,23 +48,20 @@ public class CycleArena implements Listener {
 
     @EventHandler
     public void onLoose(PlayerMoveEvent event) {
-        Location location = event.getPlayer().getLocation();
-        if (location.getY() < config.getLOOSE_ZONE() && !plugin.getGhost().isGhost(event.getPlayer())) {
-            arena.setCounter(arena.getCounter() - 1);
-            arena.setSpectator(event.getPlayer(), true);
-            //hidePlayer(event.getPlayer());
-            Sender.broadcastMessage(config.getPLAYER_LOOSE_MESSAGE().replace("<name>", event.getPlayer().getName()));
-            Spectator.set(plugin, arena, event.getPlayer(), config.getARENA_SPAWN());
+        if (event.getPlayer().getLocation().getY() < config.getLOOSE_ZONE() && arena.getState().equals(GameState.PLAYING)) {
+            if (!plugin.getGhost().isGhost(event.getPlayer())) {
+                Sender.broadcastMessage(config.getPLAYER_LOOSE_MESSAGE().replace("<name>", event.getPlayer().getName()));
+                Spectator.set(plugin, arena, event.getPlayer(), config.getARENA_SPAWN());
+            } else {
+                Teleport.go(event.getPlayer(), config.getARENA_SPAWN());
+            }
         }
-        if (location.getY() < config.getLOOSE_ZONE() && plugin.getGhost().isGhost(event.getPlayer())) {
-            Teleport.go(event.getPlayer(), config.getARENA_SPAWN());
-        }
-        if (arena.getCounter() == 1 && arena.getState() == GameState.PLAYING) {
+        if (arena.getNotSpectatorList().size() == 1 && arena.getState() == GameState.PLAYING) {
             Player player = arena.getNotSpectatorList().get(0);
             Sender.broadcastMessage(config.getPLAYER_WIN_MESSAGE().replace("<name>", player.getName()));
             arena.setState(GameState.RESTARTING);
-            //Timer.start(plugin, config);
-            //Timer.kickAll(plugin);
+            Timer.start(plugin, config);
+            Timer.kickAll(plugin);
         }
     }
 }

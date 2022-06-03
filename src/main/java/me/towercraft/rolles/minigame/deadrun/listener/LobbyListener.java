@@ -5,6 +5,7 @@ import me.towercraft.rolles.minigame.deadrun.DeadRun;
 import me.towercraft.rolles.minigame.deadrun.arena.StateArena;
 import me.towercraft.rolles.minigame.deadrun.arena.lobby.Lobby;
 import me.towercraft.rolles.minigame.deadrun.config.YMLConfig;
+import me.towercraft.rolles.minigame.deadrun.enumerate.GameState;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -20,8 +21,12 @@ public class LobbyListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.setJoinMessage("");
-        lobby.fill(event.getPlayer());
+        if (arena.getState() == GameState.WAITING) {
+            event.setJoinMessage("");
+            lobby.fill(event.getPlayer());
+        } else {
+            event.getPlayer().kickPlayer("");
+        }
     }
 
     @EventHandler void onLeave(PlayerQuitEvent event) {

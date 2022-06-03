@@ -1,6 +1,5 @@
 package me.towercraft.rolles.minigame.deadrun.listener;
 
-import com.avaje.ebeaninternal.server.cluster.PacketMessages;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -10,7 +9,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
-public class Game implements Listener {
+public class GameListener implements Listener {
 
     @EventHandler
     public void onWeatherChange(WeatherChangeEvent event){
