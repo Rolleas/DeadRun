@@ -7,6 +7,8 @@ import me.towercraft.rolles.minigame.deadrun.config.YMLConfig;
 import me.towercraft.rolles.minigame.deadrun.enumerate.GameState;
 import me.towercraft.rolles.minigame.deadrun.notification.Sender;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
@@ -35,6 +37,7 @@ public abstract class Timer {
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             Collection<? extends Player> players = Bukkit.getOnlinePlayers();
             players.forEach(player -> player.kickPlayer(""));
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "stop");
         }, 200);
     }
 

@@ -1,5 +1,6 @@
 package me.towercraft.rolles.minigame.deadrun.arena.lobby;
 
+import de.dytanic.cloudnet.ext.bridge.bukkit.BukkitCloudNetHelper;
 import lombok.AllArgsConstructor;
 import me.towercraft.rolles.minigame.deadrun.DeadRun;
 import me.towercraft.rolles.minigame.deadrun.arena.StateArena;
@@ -21,6 +22,7 @@ public class Lobby {
     public void check() {
         if (Objects.equals(arena.getPlayers().size(), config.getMAX_PLAYERS())) {
             arena.setState(GameState.STARTING);
+            BukkitCloudNetHelper.changeToIngame(true);
             Timer.startGame(plugin, config, arena);
         }
     }

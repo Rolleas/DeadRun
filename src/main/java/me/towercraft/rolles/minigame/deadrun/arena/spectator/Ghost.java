@@ -49,7 +49,6 @@ public class Ghost {
                     Player player = member.getPlayer();
 
                     if (player != null) {
-                        // Update invisibility effect
                         setGhost(player, isGhost(player));
                     } else {
                         ghosts.remove(member.getName());
