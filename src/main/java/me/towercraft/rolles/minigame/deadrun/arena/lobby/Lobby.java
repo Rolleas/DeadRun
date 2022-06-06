@@ -20,7 +20,7 @@ public class Lobby {
     private final DeadRun plugin;
 
     public void check() {
-        if (Objects.equals(arena.getPlayers().size(), config.getMAX_PLAYERS())) {
+        if (Objects.equals(DeadRun.spectator.getPlayers().size(), config.getMAX_PLAYERS())) {
             arena.setState(GameState.STARTING);
             BukkitCloudNetHelper.changeToIngame(true);
             Timer.startGame(plugin, config, arena);
@@ -28,10 +28,13 @@ public class Lobby {
     }
 
     public void fill(Player player) {
-        if (arena.getPlayers().size() < config.getMAX_PLAYERS()) {
+        if (DeadRun.spectator.getPlayers().size() < config.getMAX_PLAYERS()) {
             Teleport.go(player, config.getARENA_SPAWN());
-            arena.addPlayer(player, false);
-            new Message().playerJoin(config, arena, player);
+            DeadRun.spectator.addPlayer(player, false);
+            Sender.broadcastMessage(config.getPLAYER_JOIN_MESSAGE()
+                    .replace("<current>", String.valueOf(DeadRun.spectator.getPlayers().size()))
+                    .replace("<max>", String.valueOf(config.getMAX_PLAYERS()))
+                    .replace("<name>", String.valueOf(player.getName())));
         }
         check();
     }
@@ -39,9 +42,6 @@ public class Lobby {
     public void remove(Player player) {
         if (arena.getState() == GameState.WAITING) {
             Sender.broadcastMessage(config.getPLAYER_LEAVE_MESSAGE().replace("<name>", player.getName()));
-        }
-        if (arena.getState() == GameState.PLAYING) {
-            Sender.broadcastMessage(config.getPLAYER_LOOSE_MESSAGE().replace("<name>", player.getName()));
         }
     }
 }

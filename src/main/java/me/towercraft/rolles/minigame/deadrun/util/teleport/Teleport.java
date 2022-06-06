@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 public abstract class Teleport {
 
     public static Location locationFormation(String location) {
-        World world = Bukkit.getWorld("world");
+        World world = Bukkit.getWorlds().get(0);
         List<Double> coords = Arrays.stream(location.split(",")).map(Double::parseDouble).collect(Collectors.toList());
-        return new Location(world, coords.get(0), coords.get(1), coords.get(2), 0 ,100);
+        return new Location(world, coords.get(0), coords.get(1), coords.get(2), 100 ,100);
     }
 
     public static void go(Player player, String location) {
@@ -21,11 +21,9 @@ public abstract class Teleport {
     }
 
     public static void TeleportAllPlayers(String location) {
-        World world = Bukkit.getWorld("world");
+        World world = Bukkit.getWorlds().get(0);
         Collection<? extends Player> players = Bukkit.getOnlinePlayers();
-        for (Player player : players) {
-            player.teleport(locationFormation(location));
-        }
+        players.forEach(player -> player.teleport(locationFormation(location)));
     }
 
 }

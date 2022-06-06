@@ -1,31 +1,59 @@
 package me.towercraft.rolles.minigame.deadrun.arena.spectator;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import me.towercraft.rolles.minigame.deadrun.DeadRun;
 import me.towercraft.rolles.minigame.deadrun.arena.StateArena;
 import me.towercraft.rolles.minigame.deadrun.util.teleport.Teleport;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-public abstract class Spectator {
+@Data
+public class Spectator {
+    private HashMap<Player, Boolean> players = new HashMap<>();
 
-    private static void hidePlayer(Player player, StateArena arena) {
-        List<Player> players = arena.getNotSpectatorList();
+    public void addPlayer(Player player, Boolean value) {
+        players.put(player, value);
+    }
+
+    public Boolean getSpector(Player player) {
+        return players.get(player);
+    }
+
+    public void setSpectator(Player player, Boolean value) {
+        players.put(player, value);
+    }
+
+    public List<Player> getNotSpectatorList() {
+        Set<Player> keys = players.keySet();
+        return keys.stream().filter(key -> players.get(key).equals(false)).collect(Collectors.toList());
+    }
+
+    public List<Player> getSpectorList() {
+        Set<Player> keys = players.keySet();
+        return keys.stream().filter(key -> players.get(key).equals(true)).collect(Collectors.toList());
+    }
+
+    private void hidePlayer(Player player) {
+        List<Player> players = getNotSpectatorList();
         players.forEach(element -> element.hidePlayer(player));
     }
 
-    private static void showForSpector(Player player, StateArena arena) {
-        List<Player> players = arena.getSpectorList();
+    private void showForSpector(Player player) {
+        List<Player> players = getSpectorList();
         players.forEach(player::showPlayer);
     }
 
-    public static void set(DeadRun plugin, StateArena arena, Player player, String location) {
-        arena.setSpectator(player, true);
-        hidePlayer(player, arena);
-        showForSpector(player, arena);
-        Teleport.go(player, location);
+    public void set(Player player) {
+        setSpectator(player, true);
+        hidePlayer(player);
+        showForSpector(player);
         player.setAllowFlight(true);
         player.setFlying(true);
-        plugin.getGhost().setGhost(player, true);
+        DeadRun.ghostFactory.setGhost(player, true);
     }
 }
