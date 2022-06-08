@@ -13,6 +13,10 @@ import java.util.stream.Collectors;
 public class Spectator {
     private HashMap<Player, Boolean> players = new HashMap<>();
 
+    public void removePlayer(Player player) {
+        players.remove(player);
+    }
+
     public void addPlayer(Player player, Boolean value) {
         players.put(player, value);
     }

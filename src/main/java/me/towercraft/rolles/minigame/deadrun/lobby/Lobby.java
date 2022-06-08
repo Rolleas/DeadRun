@@ -42,5 +42,8 @@ public class Lobby {
         if (arena.getState() == GameState.WAITING) {
             Sender.messageForListPlayers(config.getPLAYER_LEAVE_MESSAGE().replace("<name>", player.getName()));
         }
+        if (arena.getState() == GameState.PLAYING) {
+            DeadRun.spectator.removePlayer(player);
+        }
     }
 }

@@ -33,6 +33,14 @@ public class YMLConfig {
     private String WIN_PLACES;
     private Integer REWARD_LOSER_MIN;
     private Integer REWARD_LOSER_MAX;
+    private Integer REWARD_EXP_FIRST_MIN;
+    private Integer REWARD_EXP_FIRST_MAX;
+    private Integer REWARD_EXP_SECOND_MIN;
+    private Integer REWARD_EXP_SECOND_MAX;
+    private Integer REWARD_EXP_THIRD_MIN;
+    private Integer REWARD_EXP_THIRD_MAX;
+    private Integer REWARD_EXP_LOSER_MIN;
+    private Integer REWARD_EXP_LOSER_MAX;
     private FileConfiguration config;
 
     public YMLConfig(DeadRun plugin) {
@@ -89,5 +97,13 @@ public class YMLConfig {
         this.WIN_PLACES = config.getString("messages.win-places");
         this.REWARD_LOSER_MIN = config.getInt("arena.reward.money.loser.min");
         this.REWARD_LOSER_MAX = config.getInt("arena.reward.money.loser.max");
+        this.REWARD_EXP_FIRST_MIN = config.getInt("arena.reward.experience.first-place.min");
+        this.REWARD_EXP_FIRST_MAX = config.getInt("arena.reward.experience.first-place.max");
+        this.REWARD_EXP_SECOND_MIN = config.getInt("arena.reward.experience.second-place.min");
+        this.REWARD_EXP_SECOND_MAX = config.getInt("arena.reward.experience.second-place.max");
+        this.REWARD_EXP_THIRD_MIN = config.getInt("arena.reward.experience.third-place.min");
+        this.REWARD_EXP_THIRD_MAX = config.getInt("arena.reward.experience.third-place.max");
+        this.REWARD_EXP_LOSER_MIN = config.getInt("arena.reward.experience.loser.min");
+        this.REWARD_EXP_LOSER_MAX = config.getInt("arena.reward.experience.loser.max");
     }
 }
