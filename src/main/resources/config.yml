@@ -3,6 +3,33 @@ arena:
   list-remove-block: SAND,GRAVEL
   complete: false
   loose-zone: 20
+  reward:
+    money:
+      first-place:
+        min: 10
+        max: 100
+      second-place:
+        min: 10
+        max: 50
+      third-place:
+        min: 10
+        max: 25
+      loose:
+        min: 10
+        max: 10
+    experience:
+      first-place:
+        min: 10
+        max: 100
+      second-place:
+        min: 10
+        max: 50
+      third-place:
+        min: 10
+        max: 25
+      loose:
+        min: 10
+        max: 10
 messages:
   join-player: "&7Игрок &a<name> &7присоединился к игре &7(&a<current>&7/&a<max>&7)"
   leave-player: "&7Игрок &a<name> &7покинул игру &7(&a<current>&7/&a<max>&7)"
@@ -10,4 +37,11 @@ messages:
   loose: "&7Игрок &a<name> &7упал."
   win: "&7Игрок &a<name> &7победил!"
   win-for-player: "Вы победили!"
+  win-places:
+    - "====================DeadRun====================,"
+    - "1 Место: <name1>,"
+    - "2 Место: <name2>,"
+    - "3 Место: <name3>,"
+    - "==============================================="
+
 

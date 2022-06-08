@@ -3,7 +3,7 @@ package me.towercraft.rolles.minigame.deadrun.listener;
 import lombok.AllArgsConstructor;
 import me.towercraft.rolles.minigame.deadrun.DeadRun;
 import me.towercraft.rolles.minigame.deadrun.arena.StateArena;
-import me.towercraft.rolles.minigame.deadrun.arena.lobby.Lobby;
+import me.towercraft.rolles.minigame.deadrun.lobby.Lobby;
 import me.towercraft.rolles.minigame.deadrun.config.YMLConfig;
 import me.towercraft.rolles.minigame.deadrun.enumerate.GameState;
 import org.bukkit.event.EventHandler;

@@ -1,6 +1,5 @@
 package me.towercraft.rolles.minigame.deadrun.config;
 
-import co.aikar.timings.TimingHistory;
 import lombok.Data;
 import me.towercraft.rolles.minigame.deadrun.DeadRun;
 import org.bukkit.Material;
@@ -25,6 +24,13 @@ public class YMLConfig {
     private String PLAYER_WIN_MESSAGE;
     private String PLAYER_WIN_TITLE;
     private List<Material> materials = new ArrayList<>();
+    private Integer REWARD_FIST_MIN;
+    private Integer REWARD_FIST_MAX;
+    private Integer REWARD_SECOND_MIN;
+    private Integer REWARD_SECOND_MAX;
+    private Integer REWARD_THIRD_MIN;
+    private Integer REWARD_THIRD_MAX;
+    private String WIN_PLACES;
     private FileConfiguration config;
 
     public YMLConfig(DeadRun plugin) {
@@ -72,5 +78,12 @@ public class YMLConfig {
         this.PLAYER_LOOSE_MESSAGE = config.getString("messages.loose");
         this.PLAYER_WIN_MESSAGE = config.getString("messages.win");
         this.PLAYER_WIN_TITLE = config.getString("messages.win-for-player");
+        this.REWARD_FIST_MIN = config.getInt("arena.reward.money.first-place.min");
+        this.REWARD_FIST_MAX = config.getInt("arena.reward.money.first-place.max");
+        this.REWARD_SECOND_MIN = config.getInt("arena.reward.money.second-place.min");
+        this.REWARD_SECOND_MAX = config.getInt("arena.reward.money.second-place.max");
+        this.REWARD_THIRD_MIN = config.getInt("arena.reward.money.third-place.min");
+        this.REWARD_THIRD_MAX = config.getInt("arena.reward.money.third-place.max");
+        this.WIN_PLACES = config.getString("messages.win-places");
     }
 }

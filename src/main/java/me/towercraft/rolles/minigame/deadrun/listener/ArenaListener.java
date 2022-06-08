@@ -17,8 +17,12 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+
+import java.util.Arrays;
+import java.util.Map;
 
 @AllArgsConstructor
 public class ArenaListener implements Listener {
@@ -43,6 +47,7 @@ public class ArenaListener implements Listener {
         if (!event.getSpector()) {
             if(event.getPlayer().getLocation().getY() <= config.getLOOSE_ZONE()) {
                 DeadRun.spectator.set(event.getPlayer());
+                Sender.messageForListPlayers(config.getPLAYER_LOOSE_MESSAGE().replace("<name>", event.getPlayer().getName()));
                 Teleport.go(event.getPlayer(), config.getARENA_SPAWN());
             }
         } else {
@@ -52,12 +57,17 @@ public class ArenaListener implements Listener {
 
     @EventHandler
     public void winPlayer(PlayerWinEvent event) {
-        Sender.broadcastMessage(config.getPLAYER_WIN_MESSAGE().replace("<name>", event.getPlayer().getName()));
+        Sender.messageForListPlayers(config.getPLAYER_WIN_MESSAGE().replace("<name>", event.getPlayer().getName()));
         DeadRun.arena.setState(GameState.RESTARTING);
     }
 
     @EventHandler
     public void stopArena(GameRestartEvent event) {
+        String message = config.getWIN_PLACES()
+                .replace("<name1>", DeadRun.arena.getPlaces().get(1).getName())
+                .replace("<name2>", DeadRun.arena.getPlaces().get(2).getName())
+                .replace("<name3>", DeadRun.arena.getPlaces().get(3).getName());
+        Arrays.stream(message.split(",")).forEach(Sender::messageForListPlayers);
         Timer.start(plugin, config);
         Timer.kickAll(plugin);
     }

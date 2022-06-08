@@ -31,9 +31,7 @@ public abstract class Sender {
 
     public static void messageForListPlayers(String message) {
         Collection<? extends Player> players = Bukkit.getOnlinePlayers();
-        for (Player player : players) {
-            sendMessagePlayer(player, message);
-        }
+        players.forEach(player -> sendMessagePlayer(player, message));
 
     }
 

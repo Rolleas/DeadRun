@@ -1,6 +1,6 @@
 package me.towercraft.rolles.minigame.deadrun;
 
-import me.towercraft.rolles.minigame.deadrun.arena.lobby.Lobby;
+import me.towercraft.rolles.minigame.deadrun.lobby.Lobby;
 import me.towercraft.rolles.minigame.deadrun.arena.spectator.Ghost;
 import me.towercraft.rolles.minigame.deadrun.arena.spectator.Spectator;
 import me.towercraft.rolles.minigame.deadrun.command.DeadRunCommand;

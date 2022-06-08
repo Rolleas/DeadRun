@@ -1,10 +1,7 @@
 package me.towercraft.rolles.minigame.deadrun.arena.spectator;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import me.towercraft.rolles.minigame.deadrun.DeadRun;
-import me.towercraft.rolles.minigame.deadrun.arena.StateArena;
-import me.towercraft.rolles.minigame.deadrun.util.teleport.Teleport;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -56,4 +53,6 @@ public class Spectator {
         player.setFlying(true);
         DeadRun.ghostFactory.setGhost(player, true);
     }
+
+
 }

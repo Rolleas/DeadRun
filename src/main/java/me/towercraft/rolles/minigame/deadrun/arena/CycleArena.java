@@ -15,6 +15,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import java.util.List;
+
 @AllArgsConstructor
 public class CycleArena implements Listener {
 
@@ -26,7 +28,7 @@ public class CycleArena implements Listener {
         Teleport.TeleportAllPlayers(config.getARENA_SPAWN());
         Bukkit.getScheduler().scheduleAsyncDelayedTask(plugin, () -> {
             Bukkit.getPluginManager().registerEvents(this, plugin);
-        }, 100);
+        }, 50);
     }
 
     @EventHandler
@@ -40,13 +42,18 @@ public class CycleArena implements Listener {
     public void onLoose(PlayerMoveEvent event) {
         if (arena.getState().equals(GameState.PLAYING)) {
             if (event.getPlayer().getLocation().getY() < config.getLOOSE_ZONE()) {
+                if (DeadRun.spectator.getNotSpectatorList().size() <= 3) {
+                    arena.addPlayer( event.getPlayer(), DeadRun.spectator.getNotSpectatorList().size());
+                }
                 Bukkit.getPluginManager().callEvent(new LoosePlayerEvent(event.getPlayer(), DeadRun.ghostFactory.isGhost(event.getPlayer())));
             }
             if (DeadRun.spectator.getNotSpectatorList().size() == 1) {
                 Player player = DeadRun.spectator.getNotSpectatorList().get(0);
+                arena.addPlayer(player, DeadRun.spectator.getNotSpectatorList().size());
                 Bukkit.getPluginManager().callEvent(new PlayerWinEvent(player));
                 Bukkit.getPluginManager().callEvent(new GameRestartEvent());
             }
+
         }
     }
 }
