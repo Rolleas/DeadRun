@@ -31,6 +31,8 @@ public class YMLConfig {
     private Integer REWARD_THIRD_MIN;
     private Integer REWARD_THIRD_MAX;
     private String WIN_PLACES;
+    private Integer REWARD_LOSER_MIN;
+    private Integer REWARD_LOSER_MAX;
     private FileConfiguration config;
 
     public YMLConfig(DeadRun plugin) {
@@ -85,5 +87,7 @@ public class YMLConfig {
         this.REWARD_THIRD_MIN = config.getInt("arena.reward.money.third-place.min");
         this.REWARD_THIRD_MAX = config.getInt("arena.reward.money.third-place.max");
         this.WIN_PLACES = config.getString("messages.win-places");
+        this.REWARD_LOSER_MIN = config.getInt("arena.reward.money.loser.min");
+        this.REWARD_LOSER_MAX = config.getInt("arena.reward.money.loser.max");
     }
 }

@@ -14,7 +14,7 @@ arena:
       third-place:
         min: 10
         max: 25
-      loose:
+      loser:
         min: 10
         max: 10
     experience:
@@ -27,7 +27,7 @@ arena:
       third-place:
         min: 10
         max: 25
-      loose:
+      loser:
         min: 10
         max: 10
 messages:

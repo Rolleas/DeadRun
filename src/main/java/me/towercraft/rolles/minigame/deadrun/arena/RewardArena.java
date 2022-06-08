@@ -3,12 +3,20 @@ package me.towercraft.rolles.minigame.deadrun.arena;
 import me.towercraft.rolles.minigame.deadrun.DeadRun;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RewardArena {
 
     public void giveRewardLoserMoney() {
+        ConsoleCommandSender console = Bukkit.getConsoleSender();
         if (DeadRun.spectator.getPlayers().size() > 3) {
-
+           DeadRun.spectator.getPlayers().entrySet().stream().filter(player -> !DeadRun.arena.getPlaces().containsValue(player.getKey())).collect(Collectors.toList())
+                   .stream().map(Map.Entry::getKey).collect(Collectors.toList()).stream().forEach(player -> Bukkit.dispatchCommand(console, "tclevel addrandommoney " + player.getName() +
+                           " " + DeadRun.config.getREWARD_LOSER_MIN()+ " " + DeadRun.config.getREWARD_LOSER_MAX() + " no no"));
         }
     }
 
