@@ -1,5 +1,6 @@
 package me.towercraft.rolles.minigame.deadrun;
 
+import me.towercraft.rolles.minigame.deadrun.arena.StandsCheckArena;
 import me.towercraft.rolles.minigame.deadrun.lobby.Lobby;
 import me.towercraft.rolles.minigame.deadrun.arena.spectator.Ghost;
 import me.towercraft.rolles.minigame.deadrun.arena.spectator.Spectator;
@@ -21,6 +22,7 @@ public final class DeadRun extends JavaPlugin {
     public static Ghost ghostFactory;
     public static Spectator spectator;
     public static DeadRun plugin;
+    public static StandsCheckArena standsCheckArena;
 
     @Override
     public void onEnable() {
@@ -30,11 +32,12 @@ public final class DeadRun extends JavaPlugin {
         lobby = new Lobby(arena, config, this);
         spectator = new Spectator();
         ghostFactory = new Ghost(this);
+        standsCheckArena = new StandsCheckArena();
         new DeadRunCommand(this, config);
         Bukkit.getPluginManager().registerEvents(new GameListener(), this);
         if (config.getARENA_COMPLETE()) {
             Bukkit.getPluginManager().registerEvents(new LobbyListener(config, arena, this, lobby), this);
-            Bukkit.getPluginManager().registerEvents(new ArenaListener(config, this), this);
+            Bukkit.getPluginManager().registerEvents(new ArenaListener(), this);
         }
     }
 

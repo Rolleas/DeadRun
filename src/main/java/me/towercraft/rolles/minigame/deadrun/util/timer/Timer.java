@@ -44,7 +44,7 @@ public abstract class Timer {
     public static void startGame(DeadRun plugin, YMLConfig config, StateArena arena) {
         start(plugin, config);
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
-            new CycleArena(arena, config, plugin).start();
+            new CycleArena().start();
             arena.setState(GameState.PLAYING);
         }, 200);
     }
