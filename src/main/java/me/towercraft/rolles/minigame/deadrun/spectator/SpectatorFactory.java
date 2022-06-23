@@ -1,4 +1,4 @@
-package me.towercraft.rolles.minigame.deadrun.arena.spectator;
+package me.towercraft.rolles.minigame.deadrun.spectator;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -13,7 +13,7 @@ import org.bukkit.scoreboard.Team;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Ghost {
+public class SpectatorFactory {
     private static final String GHOST_TEAM_NAME = "Ghosts";
     private static final long UPDATE_DELAY = 20L;
 
@@ -26,7 +26,7 @@ public class Ghost {
 
     private Set<String> ghosts = new HashSet<>();
 
-    public Ghost(Plugin plugin) {
+    public SpectatorFactory(Plugin plugin) {
         createTask(plugin);
         createGetTeam();
     }
