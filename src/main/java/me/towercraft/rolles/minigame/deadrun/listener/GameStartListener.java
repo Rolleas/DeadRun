@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.ArrayList;
 
-public class GameStart implements Listener {
+public class GameStartListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {

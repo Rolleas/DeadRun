@@ -1,7 +1,7 @@
 package me.towercraft.rolles.minigame.deadrun;
 
 import me.towercraft.rolles.minigame.deadrun.afk.AFKCheck;
-import me.towercraft.rolles.minigame.deadrun.listener.GameStart;
+import me.towercraft.rolles.minigame.deadrun.listener.GameStartListener;
 import me.towercraft.rolles.minigame.deadrun.spectator.SpectatorFactory;
 import me.towercraft.rolles.minigame.deadrun.util.StorageSpectatorsImpl;
 import org.bukkit.Bukkit;
@@ -19,7 +19,7 @@ public final class Deadrun extends JavaPlugin {
         plugin = this;
         storageSpectators = new StorageSpectatorsImpl();
         spectatorFactory = new SpectatorFactory(this);
-        Bukkit.getPluginManager().registerEvents(new GameStart(), this);
+        Bukkit.getPluginManager().registerEvents(new GameStartListener(), this);
     }
 
     @Override
